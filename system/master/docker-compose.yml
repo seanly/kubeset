@@ -15,7 +15,7 @@ services:
 
   grafana:
     container_name: grafana
-    image: registry.cn-hangzhou.aliyuncs.com/k8ops/grafana:8.1.2
+    image: registry.cn-hangzhou.aliyuncs.com/k8ops/grafana:8.5.15
     restart: unless-stopped
     ports:
       - 3000:3000
