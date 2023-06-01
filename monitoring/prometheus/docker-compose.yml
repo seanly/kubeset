@@ -1,0 +1,19 @@
+version: '3.2'
+
+services:
+  prometheus:
+    container_name: prometheus
+    image: registry.cn-hangzhou.aliyuncs.com/k8ops/prometheus:v2.35.0
+    restart: unless-stopped
+    ports:
+      - 9090:9090
+    volumes:
+      - type: bind
+        source: ./config/prometheus.yml
+        target: /etc/prometheus/prometheus.yml
+
+networks:
+  default:
+    name: opsbox-network
+    external: true
+

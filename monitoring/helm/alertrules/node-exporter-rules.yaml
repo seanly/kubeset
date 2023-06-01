@@ -1,0 +1,48 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  annotations:
+    prometheus-operator-validated: "true"
+  labels:
+    app: kube-prometheus-stack
+    release: monitoring
+  name: nodealert.rule
+spec:
+  groups:
+  - name: node-alert
+    rules:
+    - alert: HostOutOfMemory
+      expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 0.05
+      for: 2m
+      labels:
+        mem: lower
+        severity: warning
+      annotations:
+        summary: Host out of memory (instance {{ $labels.instance }})
+        description: "Node memory is filling up (< 5% left)  VALUE = {{ $value | humanizePercentage }}"
+    - alert: HostHighCpuLoad
+      expr: 1 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) ) > 0.85
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: Host high CPU load (instance {{ $labels.instance }})
+        description: "CPU load is > 80%  VALUE = {{ $value | humanizePercentage }}"
+    - alert: HostOutOfDiskSpace
+      expr: (node_filesystem_avail_bytes{fstype!='tmpfs'} * 100) / node_filesystem_size_bytes{fstype!='tmpfs'} < 10 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: Host out of disk space (instance {{ $labels.instance }})
+        description: "Disk is almost full (< 10% left) VALUE = {{ $value }}"
+    - alert: HostOutOfInodes
+      expr: node_filesystem_files_free{mountpoint ="/rootfs"} / node_filesystem_files{mountpoint="/rootfs"} * 100 < 10 and ON (instance, device, mountpoint) node_filesystem_readonly{mountpoint="/rootfs"} == 0
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: Host out of inodes (instance {{ $labels.instance }})
+        description: "Disk is almost running out of available inodes (< 10% left)  VALUE = {{ $value }}"
+
+    
