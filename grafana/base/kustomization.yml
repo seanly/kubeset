@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./deployment.yaml
+  - ./service.yaml
+  - ./nodeport.yaml
+
+configMapGenerator:
+- name: grafana-config
+  files:
+  - ./config/grafana.ini
+  - ./config/ldap.toml
+
+- name: grafana-provisioning-dashboards
+  files:
+  - ./config/provisioning/dashboards/monitoring.yml
+
+- name: grafana-provisioning-datasources
+  files:
+  - ./config/provisioning/datasources/monitoring.yml
+
+generatorOptions:
+  disableNameSuffixHash: true
+

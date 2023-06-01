@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  grafana:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: grafana
+    image: seanly/grafana:9.5.1-dashboards
+    restart: unless-stopped
+    user: '472'
+    ports:
+    - 3000:3000
+    volumes:
+      - ./base/config:/etc/grafana
+    # network_mode: "host"
+

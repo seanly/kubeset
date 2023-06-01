@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+- name: prom-demo
+  type: prometheus
+  access: proxy
+  url: http://127.0.0.1:30090
+  isDefault: false
+  editable: false
+- name: loki-demo
+  type: loki
+  access: proxy
+  url: http://127.0.0.1:30310
+  isDefault: false
+  editable: false
