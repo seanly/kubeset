@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    local-pvname: pv-loki-0
+  name: pv-loki-0
+spec:
+  capacity:
+    storage: 150Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-volume
+  local:
+    path: /data/opsbox/data/loki/data
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: node-role.opsbox.dev/logging
+          operator: In
+          values:
+          - "loki"
+
