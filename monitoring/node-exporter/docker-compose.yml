@@ -36,4 +36,3 @@ networks:
   default:
     name: opsbox-network
     external: true
-

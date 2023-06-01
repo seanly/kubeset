@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  promalert:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    container_name: prometheus-alert
+    image: seanly/prometheus-alert:v4.8.2-fix
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - type: bind
+        source: .data/db/PrometheusAlertDB.db
+        target: /app/db/PrometheusAlertDB.db
+    environment:
+      - PA_LOGIN_USER=admin
+      - PA_LOGIN_PASSWORD=prometheusalert
+      - PA_TITLE=PrometheusAlert
+      - PA_OPEN_DINGDING=1
+      - PA_OPEN_WEIXIN=1
+      - PA_OPEN_FEISHU=1
+
+networks:
+  default:
+    name: opsbox-network
+    external: true
+

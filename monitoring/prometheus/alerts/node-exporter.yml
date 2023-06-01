@@ -1,9 +1,6 @@
 groups:
-
 - name: NodeExporter
-
   rules:
-
     - alert: HostOutOfMemory
       expr: 'node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10'
       for: 2m
