@@ -1,15 +1,8 @@
 # Opsmetrics
 
-## k8s
+## storage
 
-sc: local-volume
-
-```yaml
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: local-volume
-provisioner: kubernetes.io/no-provisioner
-volumeBindingMode: WaitForFirstConsumer
-reclaimPolicy: Retain
+```bash
+cd storage
+k apply -f local-volume.yaml
 ```
