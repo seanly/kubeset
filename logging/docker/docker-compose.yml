@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  loki:
+    image: grafana/loki:2.5.0
+    ports:
+      - 3100:3100
+    command: -config.file=/etc/loki/loki.yaml
+    volumes:
+      - ./config/loki.yaml:/etc/loki/loki.yaml
+      - loki-data:/data/loki
+
+  promtail:
+    image:  grafana/promtail:2.5.0
+    container_name: promtail
+    volumes:
+      - ./config/promtail.yaml:/etc/promtail/docker-config.yaml
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -config.file=/etc/promtail/docker-config.yaml
+    depends_on:
+      - loki
+    labels:
+      - traefik.enable=false
+
+networks:
+  default:
+    name: opsbox-network
+    external: true
+
+volumes:
+    loki-data:
+
