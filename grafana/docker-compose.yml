@@ -14,7 +14,10 @@ services:
     volumes:
       - ./base/config:/etc/grafana
     # network_mode: "host"
-
+    labels:
+    - "traefik.http.routers.grafana.rule=Host(`grafana.opsbox.dev`)"
+    - "traefik.http.routers.grafana.tls=true"
+    - "traefik.http.routers.grafana.tls.certResolver=le"
 networks:
   default:
     name: opsbox-network
