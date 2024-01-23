@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+  node-exporter:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: node-exporter
+    container_name: node-exporter
+    image: seanly/opsmetrics:node-exporter-v1.7.0-1
+    restart: unless-stopped
+  k8s-sidecar:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: k8s-sidecar
+    container_name: k8s-sidecar
+    image: seanly/opsmetrics:k8s-sidecar-1.25.2-1
+    restart: unless-stopped
+  alertmanager:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: alertmanager
+    container_name: alertmanager
+    image: seanly/opsmetrics:alertmanager-v0.26.0-1
+    restart: unless-stopped
+  prometheus:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: prometheus
+    container_name: prometheus
+    image: seanly/opsmetrics:prometheus-v2.48.1-1
+    restart: unless-stopped
+  prometheus-operator:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: prometheus-operator
+    container_name: prometheus-operator
+    image: seanly/opsmetrics:prometheus-operator-v0.70.0-1
+    restart: unless-stopped
+  kube-webhook-certgen:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: kube-webhook-certgen
+    container_name: kube-webhook-certgen
+    image: seanly/opsmetrics:kube-webhook-certgen-v1.5.1-1
+    restart: unless-stopped
+  kube-state-metrics:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: kube-state-metrics
+    container_name: kube-state-metrics
+    image: seanly/opsmetrics:kube-state-metrics-v1.5.1-1
+    restart: unless-stopped
+  admission-webhook:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: node-exporter
+    container_name: node-exporter
+    image: seanly/opsmetrics:admission-webhook-v1.5.1-1
+    restart: unless-stopped
+  prometheus-config-reloader:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: node-exporter
+    container_name: node-exporter
+    image: seanly/opsmetrics:prometheus-config-reloader-v1.5.1-1
+    restart: unless-stopped
+networks:
+  default:
+    name: opsbox-network
+    external: true

@@ -3,7 +3,7 @@ version: '3'
 services:
   prometheus:
     container_name: prometheus
-    image: prom/prometheus:v2.35.0
+    image: seanly/opsmetrics:prometheus-v2.48.1-1
     restart: unless-stopped
     ports:
       - 9090:9090
