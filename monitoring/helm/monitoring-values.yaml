@@ -2326,7 +2326,7 @@ prometheusOperator:
       image:
         registry: docker.io
         repository: seanly/opsmetrics
-        tag: kube-webhook-certgen-v1.5.1-58-1
+        tag: kube-webhook-certgen-v1.5.1-1
         sha: ""
         pullPolicy: IfNotPresent
       resources: {}
@@ -3221,7 +3221,7 @@ prometheus:
 
     ## Sets version of Prometheus overriding the Prometheus version as derived
     ## from the image tag. Useful in cases where the tag does not follow semver v2.
-    version: ""
+    version: "v2.48.1"
 
     ## WebTLSConfig defines the TLS parameters for HTTPS
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#webtlsconfig

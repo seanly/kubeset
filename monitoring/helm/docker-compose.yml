@@ -55,23 +55,23 @@ services:
       dockerfile: ./Dockerfile
       target: kube-state-metrics
     container_name: kube-state-metrics
-    image: seanly/opsmetrics:kube-state-metrics-v1.5.1-1
+    image: seanly/opsmetrics:kube-state-metrics-v2.10.1-1
     restart: unless-stopped
   admission-webhook:
     build:
       context: .
       dockerfile: ./Dockerfile
-      target: node-exporter
-    container_name: node-exporter
-    image: seanly/opsmetrics:admission-webhook-v1.5.1-1
+      target: admission-webhook
+    container_name: admission-webhook
+    image: seanly/opsmetrics:admission-webhook-v0.70.0-1
     restart: unless-stopped
   prometheus-config-reloader:
     build:
       context: .
       dockerfile: ./Dockerfile
-      target: node-exporter
-    container_name: node-exporter
-    image: seanly/opsmetrics:prometheus-config-reloader-v1.5.1-1
+      target: prometheus-config-reloader
+    container_name: prometheus-config-reloader
+    image: seanly/opsmetrics:prometheus-config-reloader-v0.50.0-1
     restart: unless-stopped
 networks:
   default:

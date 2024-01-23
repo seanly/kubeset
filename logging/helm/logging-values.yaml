@@ -1,7 +1,9 @@
 loki:
+  rbac:
+    pspEnabled: false
   image:
-    repository: registry.cn-hangzhou.aliyuncs.com/k8ops/loki
-    tag: 2.5.0
+    repository: seanly/opsmetrics
+    tag: loki-2.5.0-1
   enabled: true
   isDefault: true
   affinity: 
@@ -85,9 +87,9 @@ loki:
 
 promtail:
   image:
-    registry: registry.cn-hangzhou.aliyuncs.com
-    repository: k8ops/promtail
-    tag: 2.4.2
+    registry: docker.io
+    repository: seanly/opsmetrics
+    tag: promtail-2.5.0-1
   enabled: true
   config:
     lokiAddress: http://{{ .Release.Name }}:3100/loki/api/v1/push
