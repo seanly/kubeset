@@ -2217,7 +2217,7 @@ prometheusOperator:
       ##
       image:
         registry: registry.cn-hangzhou.aliyuncs.com
-        repository: k8s/admission-webhook
+        repository: k8ops/admission-webhook
         # if not set appVersion field from Chart.yaml is used
         tag: ""
         sha: ""
