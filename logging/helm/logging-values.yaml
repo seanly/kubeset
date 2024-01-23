@@ -92,7 +92,7 @@ promtail:
     tag: promtail-2.5.0-1
   enabled: true
   config:
-    lokiAddress: http://{{ .Release.Name }}:3100/loki/api/v1/push
+    lokiAddress: http://{{ .Release.Name }}-loki:3100/loki/api/v1/push
   extraVolumes:
     - hostPath:
         path: /data/
