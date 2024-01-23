@@ -1,2 +1,0 @@
-grafana/loki:2.5.0
-grafana/promtail:2.4.2
