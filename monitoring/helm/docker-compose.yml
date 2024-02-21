@@ -9,6 +9,14 @@ services:
     container_name: node-exporter
     image: seanly/opsmetrics:node-exporter-v1.7.0-1
     restart: unless-stopped
+  cadvisor:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: cadvisor
+    container_name: cadvisor
+    image: seanly/opsmetrics:cadvisor-v0.47.2-1
+    restart: unless-stopped
   k8s-sidecar:
     build:
       context: .
@@ -73,6 +81,7 @@ services:
     container_name: prometheus-config-reloader
     image: seanly/opsmetrics:prometheus-config-reloader-v0.50.0-1
     restart: unless-stopped
+
 networks:
   default:
     name: opsbox-network

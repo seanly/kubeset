@@ -2,7 +2,7 @@ version: '3'
 
 services:
   node-exporter:
-    image: registry.cn-hangzhou.aliyuncs.com/k8ops/node-exporter:v1.3.1
+    image: seanly/opsmetrics:node-exporter-v1.7.0-1
     container_name: node-exporter
     restart: unless-stopped
     ports:
@@ -19,7 +19,7 @@ services:
     expose:
       - 9100
   cadvisor:
-    image: registry.cn-hangzhou.aliyuncs.com/k8ops/cadvisor:v0.36.0
+    image: seanly/opsmetrics:cadvisor-v0.47.2-1
     container_name: cadvisor
     restart: unless-stopped
     privileged: true

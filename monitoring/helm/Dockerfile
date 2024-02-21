@@ -7,3 +7,4 @@ FROM registry.k8s.io/ingress-nginx/kube-webhook-certgen:v20221220-controller-v1.
 FROM registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.10.1 as kube-state-metrics
 FROM quay.io/prometheus-operator/admission-webhook:v0.70.0 as admission-webhook
 FROM quay.io/prometheus-operator/prometheus-config-reloader:v0.50.0 as prometheus-config-reloader
+FROM gcr.io/cadvisor/cadvisor:v0.47.2 as cadvisor
