@@ -1,0 +1,1 @@
+FROM rancher/local-path-provisioner:v0.0.26 as local-path-provisioner

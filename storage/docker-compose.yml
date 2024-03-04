@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  node-exporter:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: local-path-provisioner
+    image: seanly/opsmetrics:local-path-provisioner-v0.0.26
+    restart: unless-stopped
+
+networks:
+  default:
+    name: opsbox-network
+    external: true
