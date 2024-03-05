@@ -7,7 +7,7 @@ services:
       dockerfile: ./Dockerfile
       target: node-exporter
     container_name: node-exporter
-    image: seanly/opsmetrics:node-exporter-v1.7.0-1
+    image: seanly/kubeset:node-exporter-v1.7.0-1
     restart: unless-stopped
   cadvisor:
     build:
@@ -15,7 +15,7 @@ services:
       dockerfile: ./Dockerfile
       target: cadvisor
     container_name: cadvisor
-    image: seanly/opsmetrics:cadvisor-v0.47.2-1
+    image: seanly/kubeset:cadvisor-v0.47.2-1
     restart: unless-stopped
   k8s-sidecar:
     build:
@@ -23,7 +23,7 @@ services:
       dockerfile: ./Dockerfile
       target: k8s-sidecar
     container_name: k8s-sidecar
-    image: seanly/opsmetrics:k8s-sidecar-1.25.2-1
+    image: seanly/kubeset:k8s-sidecar-1.25.2-1
     restart: unless-stopped
   alertmanager:
     build:
@@ -31,7 +31,7 @@ services:
       dockerfile: ./Dockerfile
       target: alertmanager
     container_name: alertmanager
-    image: seanly/opsmetrics:alertmanager-v0.26.0-1
+    image: seanly/kubeset:alertmanager-v0.26.0-1
     restart: unless-stopped
   prometheus:
     build:
@@ -39,7 +39,7 @@ services:
       dockerfile: ./Dockerfile
       target: prometheus
     container_name: prometheus
-    image: seanly/opsmetrics:prometheus-v2.48.1-1
+    image: seanly/kubeset:prometheus-v2.48.1-1
     restart: unless-stopped
   prometheus-operator:
     build:
@@ -47,7 +47,7 @@ services:
       dockerfile: ./Dockerfile
       target: prometheus-operator
     container_name: prometheus-operator
-    image: seanly/opsmetrics:prometheus-operator-v0.70.0-1
+    image: seanly/kubeset:prometheus-operator-v0.70.0-1
     restart: unless-stopped
   kube-webhook-certgen:
     build:
@@ -55,7 +55,7 @@ services:
       dockerfile: ./Dockerfile
       target: kube-webhook-certgen
     container_name: kube-webhook-certgen
-    image: seanly/opsmetrics:kube-webhook-certgen-v1.5.1-1
+    image: seanly/kubeset:kube-webhook-certgen-v1.5.1-1
     restart: unless-stopped
   kube-state-metrics:
     build:
@@ -63,7 +63,7 @@ services:
       dockerfile: ./Dockerfile
       target: kube-state-metrics
     container_name: kube-state-metrics
-    image: seanly/opsmetrics:kube-state-metrics-v2.10.1-1
+    image: seanly/kubeset:kube-state-metrics-v2.10.1-1
     restart: unless-stopped
   admission-webhook:
     build:
@@ -71,7 +71,7 @@ services:
       dockerfile: ./Dockerfile
       target: admission-webhook
     container_name: admission-webhook
-    image: seanly/opsmetrics:admission-webhook-v0.70.0-1
+    image: seanly/kubeset:admission-webhook-v0.70.0-1
     restart: unless-stopped
   prometheus-config-reloader:
     build:
@@ -79,7 +79,7 @@ services:
       dockerfile: ./Dockerfile
       target: prometheus-config-reloader
     container_name: prometheus-config-reloader
-    image: seanly/opsmetrics:prometheus-config-reloader-v0.50.0-1
+    image: seanly/kubeset:prometheus-config-reloader-v0.50.0-1
     restart: unless-stopped
 
 networks:

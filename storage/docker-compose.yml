@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
       target: local-path-provisioner
-    image: seanly/opsmetrics:local-path-provisioner-v0.0.26
+    image: seanly/kubeset:local-path-provisioner-v0.0.26
     restart: unless-stopped
 
 networks:

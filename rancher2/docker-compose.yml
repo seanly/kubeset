@@ -1,0 +1,30 @@
+version: '3'
+services:
+  rancher2:
+    build:
+      context: .
+      target: rancher2
+    container_name: rancher2
+    image: seanly/kubeset:rancher-v2.7.10
+    restart: unless-stopped
+    privileged: true
+    command: ["--debug", "--no-cacerts", "--http-listen-port=80", "--https-listen-port=443"]
+    volumes:
+      - rancher2-data:/var/lib/rancher/
+    environment:
+      AUDIT_LEVEL: 1
+    labels:
+      - "traefik.http.routers.rancher2.rule=Host(`rancher2.opsbox.dev`)"
+      - "traefik.http.routers.rancher2.tls=true"
+      - "traefik.http.routers.rancher2.tls.certResolver=le"
+      - "traefik.http.routers.rancher2.service=rancher2-http"
+      - "traefik.http.services.rancher2-http.loadbalancer.server.port=80"
+
+networks:
+  default:
+    name: opsbox-network
+    external: true
+
+volumes:
+    rancher2-data:
+

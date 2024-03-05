@@ -653,7 +653,7 @@ alertmanager:
     ##
     image:
       registry: docker.io
-      repository: seanly/opsmetrics
+      repository: seanly/kubeset
       tag: alertmanager-v0.26.0-1
       sha: ""
 
@@ -1921,7 +1921,7 @@ kubeStateMetrics:
 kube-state-metrics:
   image:
     registry: docker.io
-    repository: seanly/opsmetrics
+    repository: seanly/kubeset
     # If unset use v + .Charts.appVersion
     tag: "kube-state-metrics-v2.10.1-1"
   namespaceOverride: ""
@@ -2217,7 +2217,7 @@ prometheusOperator:
       ##
       image:
         registry: docker.io
-        repository: seanly/opsmetrics
+        repository: seanly/kubeset
         # if not set appVersion field from Chart.yaml is used
         tag: "admission-webhook-v0.70.0-1"
         sha: ""
@@ -2325,7 +2325,7 @@ prometheusOperator:
       enabled: true
       image:
         registry: docker.io
-        repository: seanly/opsmetrics
+        repository: seanly/kubeset
         tag: kube-webhook-certgen-v1.5.1-1
         sha: ""
         pullPolicy: IfNotPresent
@@ -2667,7 +2667,7 @@ prometheusOperator:
   ##
   image:
     registry: docker.io
-    repository: seanly/opsmetrics
+    repository: seanly/kubeset
     # if not set appVersion field from Chart.yaml is used
     tag: "prometheus-operator-v0.70.0-1"
     sha: ""
@@ -2694,7 +2694,7 @@ prometheusOperator:
   prometheusConfigReloader:
     image:
       registry: docker.io
-      repository: seanly/opsmetrics
+      repository: seanly/kubeset
       # if not set appVersion field from Chart.yaml is used
       tag: "prometheus-config-reloader-v0.50.0-1"
       sha: ""
@@ -3244,7 +3244,7 @@ prometheus:
     ##
     image:
       registry: docker.io
-      repository: seanly/opsmetrics
+      repository: seanly/kubeset
       tag: prometheus-v2.48.1-1
       sha: ""
 

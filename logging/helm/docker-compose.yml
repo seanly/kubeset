@@ -7,7 +7,7 @@ services:
       dockerfile: ./Dockerfile
       target: loki
     container_name: loki
-    image: seanly/opsmetrics:loki-2.5.0-1
+    image: seanly/kubeset:loki-2.5.0-1
     restart: unless-stopped
   promtail:
     build:
@@ -15,7 +15,7 @@ services:
       dockerfile: ./Dockerfile
       target: promtail
     container_name: promtail
-    image: seanly/opsmetrics:promtail-2.5.0-1
+    image: seanly/kubeset:promtail-2.5.0-1
     restart: unless-stopped
 
 networks:

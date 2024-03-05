@@ -17,3 +17,23 @@ curl -sLfO ${RANCHER_HEML_URL}
 
 helm upgrade --install oes-rancher2 ./rancher-2.7.10.tgz --namespace=oes-rancher2 --create-namespace -f ./values.yaml
 ```
+
+## in rockylinux
+
+load modules: /etc/modules-load.d/rancher2.conf
+
+```
+ip_tables
+ip_conntrack
+iptable_filter
+ipt_state
+```
+
+ref: https://docs.rockylinux.org/guides/containers/rancher_and_kubernetes/
+
+```bash
+systemctl stop firewalld
+systemctl disable firewalld
+systemctl start nftables
+systemctl enable nftables
+```
