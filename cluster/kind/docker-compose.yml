@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  kind-v1.26:
+    build: 
+      context: ./
+      target: v1.26.6
+    image: seanly/kind:node-v1.26.6
+  kind-v1.24:
+    build: 
+      context: ./
+      target: v1.24.15
+    image: seanly/kind:node-v1.24.15
+  kind-v1.22:
+    build: 
+      context: ./
+      target: v1.22.17
+    image: seanly/kind:node-v1.22.17
+  local-path-provisioner:
+    build: 
+      context: ./
+      target: local-path-provisioner
+      args:
+        - LPP_VERSION=v0.0.26
+    image: seanly/kind:local-path-provisioner-v0.0.26
