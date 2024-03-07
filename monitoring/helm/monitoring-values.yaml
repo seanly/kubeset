@@ -1306,10 +1306,10 @@ kubelet:
       - sourceLabels: [__name__]
         action: drop
         regex: 'container_(file_descriptors|tasks_state|threads_max)'
-      # Drop container spec metrics that overlap with kube-state-metrics.
-      - sourceLabels: [__name__]
-        action: drop
-        regex: 'container_spec.*'
+      # # Drop container spec metrics that overlap with kube-state-metrics.
+      # - sourceLabels: [__name__]
+      #   action: drop
+      #   regex: 'container_spec.*'
       # Drop cgroup metrics with no pod.
       - sourceLabels: [id, pod]
         action: drop
@@ -1928,6 +1928,7 @@ kube-state-metrics:
   rbac:
     create: true
   releaseLabel: true
+  metricLabelsAllowlist: "namespaces=[*],nodes=[*],pods=[*]"
   prometheus:
     monitor:
       enabled: true

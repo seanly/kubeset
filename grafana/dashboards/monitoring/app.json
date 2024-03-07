@@ -3191,7 +3191,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(sum(irate(container_network_receive_bytes_total{origin_prometheus=~\"$origin_prometheus\",image!=\"\",name=~\"^k8s_.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)* on(pod) group_right kube_pod_container_info) by(container) *8",
+          "expr": "sum(sum(irate(container_network_receive_bytes_total{origin_prometheus=~\"$origin_prometheus\",image!=\"\",name=~\"^.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)* on(pod) group_right kube_pod_container_info) by(container) *8",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
@@ -3206,7 +3206,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(sum(irate(container_network_transmit_bytes_total{origin_prometheus=~\"$origin_prometheus\",image!=\"\",name=~\"^k8s_.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)* on(pod) group_right kube_pod_container_info) by(container) *8",
+          "expr": "sum(sum(irate(container_network_transmit_bytes_total{origin_prometheus=~\"$origin_prometheus\",image!=\"\",name=~\"^.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)* on(pod) group_right kube_pod_container_info) by(container) *8",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "流出:{{ container }}",
@@ -3219,7 +3219,7 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "sum (rate (container_network_receive_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^k8s_.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)",
+          "expr": "sum (rate (container_network_receive_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)",
           "hide": true,
           "interval": "",
           "intervalFactor": 1,
@@ -3233,7 +3233,7 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "- sum (rate (container_network_transmit_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^k8s_.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)",
+          "expr": "- sum (rate (container_network_transmit_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)",
           "hide": true,
           "interval": "",
           "intervalFactor": 1,
@@ -4403,7 +4403,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(sum(irate(container_network_receive_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^k8s_.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)* on(pod) group_right kube_pod_container_info) by(pod) *8",
+          "expr": "sum(sum(irate(container_network_receive_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)* on(pod) group_right kube_pod_container_info) by(pod) *8",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
@@ -4418,7 +4418,7 @@
             "uid": "${datasource}"
           },
           "exemplar": true,
-          "expr": "sum(sum(irate(container_network_transmit_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^k8s_.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)* on(pod) group_right kube_pod_container_info) by(pod) *8",
+          "expr": "sum(sum(irate(container_network_transmit_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)* on(pod) group_right kube_pod_container_info) by(pod) *8",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "流出:{{ pod}}",
@@ -4431,7 +4431,7 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "sum (rate (container_network_receive_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^k8s_.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)",
+          "expr": "sum (rate (container_network_receive_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)",
           "hide": true,
           "interval": "",
           "intervalFactor": 1,
@@ -4445,7 +4445,7 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "- sum (rate (container_network_transmit_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^k8s_.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)",
+          "expr": "- sum (rate (container_network_transmit_bytes_total{origin_prometheus=~\"$origin_prometheus\",pod=~\"$Pod\",image!=\"\",name=~\"^.*\",node=~\"^$Node$\",namespace=~\"$NameSpace\",pod=~\".*$Container.*\"}[2m])) by (pod)",
           "hide": true,
           "interval": "",
           "intervalFactor": 1,
