@@ -108,3 +108,8 @@ ETCDCTL_KEY='/var/lib/rancher/rke2/server/tls/etcd/server-client.key'
 ETCDCTL_API=3
 etcdctl endpoint status --cluster -w table
 ```
+
+
+# rockylinux disable ipv6
+
+https://www.golinuxcloud.com/disable-ipv6-rocky-linux/
