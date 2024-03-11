@@ -34,3 +34,5 @@ disable:
 disable-cloud-controller: true
 selinux: false
 debug: false
+
+data-dir: /data/var/lib/rancher/rke2

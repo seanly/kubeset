@@ -76,7 +76,7 @@ systemctl start rke2-server
 ### cluster token
 
 ```
-cat /var/lib/rancher/rke2/server/node-token
+cat /data/var/lib/rancher/rke2/server/node-token
 
 ```
 
@@ -89,7 +89,7 @@ cat /var/lib/rancher/rke2/server/node-token
 ```
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
 export CONTAINER_RUNTIME_ENDPOINT="unix:///var/run/k3s/containerd/containerd.sock"
-export PATH=/var/lib/rancher/rke2/bin:$PATH
+export PATH=/data/var/lib/rancher/rke2/bin:$PATH
 
 # get pod list
 kubectl get pod -A
@@ -102,9 +102,9 @@ crictl ps
 ### how to access etcd cluster ?
 ```bash
 ETCDCTL_ENDPOINTS='https://127.0.0.1:2379' 
-ETCDCTL_CACERT='/var/lib/rancher/rke2/server/tls/etcd/server-ca.crt'
-ETCDCTL_CERT='/var/lib/rancher/rke2/server/tls/etcd/server-client.crt'
-ETCDCTL_KEY='/var/lib/rancher/rke2/server/tls/etcd/server-client.key' 
+ETCDCTL_CACERT='/data/var/lib/rancher/rke2/server/tls/etcd/server-ca.crt'
+ETCDCTL_CERT='/data/var/lib/rancher/rke2/server/tls/etcd/server-client.crt'
+ETCDCTL_KEY='/data/var/lib/rancher/rke2/server/tls/etcd/server-client.key' 
 ETCDCTL_API=3
 etcdctl endpoint status --cluster -w table
 ```

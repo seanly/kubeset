@@ -9,3 +9,5 @@ server: https://rke2-node1.lan:9345
 
 selinux: false
 debug: false
+
+data-dir: /data/var/lib/rancher/rke2
