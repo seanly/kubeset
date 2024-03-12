@@ -37,5 +37,8 @@ modprobe ip_vs_rr
 modprobe ip_vs_wrr
 modprobe ip_vs_sh
 
+lsmod | grep ip_vs
+ls /lib/modules/$(uname -r)/kernel/net/netfilter/ipvs|grep -o "^[^.]*" > /etc/modules-load.d/ip_vs.conf
+
 systemctl start rke2-${INSTALL_RKE2_TYPE}
 journalctl -f -u rke2-${INSTALL_RKE2_TYPE}
