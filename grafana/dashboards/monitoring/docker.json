@@ -20,15 +20,18 @@
   },
   "description": "Docker monitoring with Prometheus and cAdvisor with node selection",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": 8321,
   "graphTooltip": 1,
-  "id": 3,
-  "iteration": 1683351187593,
+  "id": 1,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "cacheTimeout": null,
-      "datasource": "${origin_prometheus}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${origin_prometheus}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -69,7 +72,6 @@
         "y": 0
       },
       "id": 7,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -87,16 +89,18 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "datasource": {
             "uid": "${origin_prometheus}"
           },
-          "expr": "count(container_last_seen{instance=~\"$node:$port\",job=~\"$job\",image!=\"\"})",
+          "editorMode": "code",
+          "expr": "count(container_last_seen{instance=~\"$node\",job=~\"$job\",image!=\"\"})",
           "intervalFactor": 2,
           "legendFormat": "",
           "metric": "container_last_seen",
+          "range": true,
           "refId": "A",
           "step": 240
         }
@@ -106,8 +110,10 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${origin_prometheus}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${origin_prometheus}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -148,7 +154,6 @@
         "y": 0
       },
       "id": 5,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -166,16 +171,18 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "datasource": {
             "uid": "${origin_prometheus}"
           },
-          "expr": "sum(container_memory_usage_bytes{instance=~\"$node:$port\",job=~\"$job\",image!=\"\"})/1024/1024",
+          "editorMode": "code",
+          "expr": "sum(container_memory_usage_bytes{instance=~\"$node\",job=~\"$job\",image!=\"\"})/1024/1024",
           "intervalFactor": 2,
           "legendFormat": "",
           "metric": "container_memory_usage_bytes",
+          "range": true,
           "refId": "A",
           "step": 240
         }
@@ -185,8 +192,10 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${origin_prometheus}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${origin_prometheus}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -227,7 +236,6 @@
         "y": 0
       },
       "id": 6,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -245,16 +253,18 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.1.2",
+      "pluginVersion": "9.5.1",
       "targets": [
         {
           "datasource": {
             "uid": "${origin_prometheus}"
           },
-          "expr": "sum(rate(container_cpu_user_seconds_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\"}[5m]) * 100)",
+          "editorMode": "code",
+          "expr": "sum(rate(container_cpu_user_seconds_total{instance=~\"$node\",job=~\"$job\",image!=\"\"}[5m]) * 100)",
           "intervalFactor": 2,
           "legendFormat": "",
           "metric": "container_memory_usage_bytes",
+          "range": true,
           "refId": "A",
           "step": 240
         }
@@ -264,13 +274,18 @@
       "type": "stat"
     },
     {
-      "datasource": "${origin_prometheus}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${origin_prometheus}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -330,41 +345,47 @@
             "mean",
             "lastNotNull"
           ],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "rate(container_cpu_user_seconds_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\", name=~\"${container}\"}[5m]) * 100",
           "datasource": {
             "uid": "${origin_prometheus}"
           },
           "editorMode": "code",
+          "expr": "rate(container_cpu_user_seconds_total{instance=~\"$node\",job=~\"$job\",image!=\"\", name=~\"${container}\"}[5m]) * 100",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
           "metric": "cpu",
+          "range": true,
           "refId": "A",
           "step": 10
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "CPU Usage",
       "type": "timeseries"
     },
     {
-      "datasource": "${origin_prometheus}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${origin_prometheus}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -424,42 +445,60 @@
             "mean",
             "lastNotNull"
           ],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{instance=~\"$node:$port\",job=~\"$job\",image!=\"\",name=~\"${container}\"}",
           "datasource": {
             "uid": "${origin_prometheus}"
           },
           "editorMode": "code",
+          "expr": "container_memory_usage_bytes{instance=~\"$node\",job=~\"$job\",image!=\"\",name=~\"${container}\"}",
           "hide": false,
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
           "metric": "container_memory_usage_bytes",
+          "range": true,
           "refId": "A",
           "step": 10
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${origin_prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "sum(container_memory_rss{instance=~\"$node\",job=~\"$job\",image!=\"\",name=~\"${container}\"}) by (name)",
+          "hide": true,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Memory Usage",
       "type": "timeseries"
     },
     {
-      "datasource": "${origin_prometheus}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${origin_prometheus}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -516,21 +555,23 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "irate(container_network_receive_bytes_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\",name=~\"${container}\"}[5m])",
           "datasource": {
             "uid": "${origin_prometheus}"
           },
           "editorMode": "code",
+          "expr": "irate(container_network_receive_bytes_total{instance=~\"$node\",job=~\"$job\",image!=\"\",name=~\"${container}\"}[5m])",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
           "metric": "container_network_receive_bytes_total",
@@ -539,19 +580,22 @@
           "step": 20
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network Rx",
       "type": "timeseries"
     },
     {
-      "datasource": "${origin_prometheus}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${origin_prometheus}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -608,21 +652,23 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "irate(container_network_transmit_bytes_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\",name=~\"${container}\"}[5m])",
           "datasource": {
             "uid": "${origin_prometheus}"
           },
           "editorMode": "code",
+          "expr": "irate(container_network_transmit_bytes_total{instance=~\"$node\",job=~\"$job\",image!=\"\",name=~\"${container}\"}[5m])",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
           "range": true,
@@ -630,19 +676,22 @@
           "step": 20
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network Tx",
       "type": "timeseries"
     },
     {
-      "datasource": "${origin_prometheus}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${origin_prometheus}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -702,21 +751,23 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "irate(container_fs_reads_bytes_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\",name=~\"${container}\"}[5m])",
           "datasource": {
             "uid": "${origin_prometheus}"
           },
           "editorMode": "code",
+          "expr": "irate(container_fs_reads_bytes_total{instance=~\"$node\",job=~\"$job\",image!=\"\",name=~\"${container}\"}[5m])",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
           "metric": "container_fs_reads_bytes_total",
@@ -725,19 +776,22 @@
           "step": 20
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "I/O Rx",
       "type": "timeseries"
     },
     {
-      "datasource": "${origin_prometheus}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${origin_prometheus}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -794,36 +848,37 @@
       "options": {
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.1.2",
       "targets": [
         {
-          "expr": "irate(container_fs_writes_bytes_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\",name=~\"${container}\"}[5m])",
           "datasource": {
             "uid": "${origin_prometheus}"
           },
           "editorMode": "code",
+          "expr": "irate(container_fs_writes_bytes_total{instance=~\"$node\",job=~\"$job\",image!=\"\",name=~\"${container}\"}[5m])",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
           "metric": "container_fs_writes_bytes_total",
+          "range": true,
           "refId": "A",
           "step": 20
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "I/O Tx",
       "type": "timeseries"
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 30,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "docker"
@@ -831,9 +886,8 @@
   "templating": {
     "list": [
       {
-        "current": {},
-        "description": null,
-        "error": null,
+        "current": {
+        },
         "hide": 0,
         "includeAll": false,
         "label": "数据源",
@@ -848,7 +902,8 @@
         "type": "datasource"
       },
       {
-        "current": {},
+        "current": {
+        },
         "datasource": {
           "uid": "${origin_prometheus}"
         },
@@ -873,12 +928,12 @@
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${origin_prometheus}",
-        "definition": "",
-        "description": null,
-        "error": null,
+        "current": {
+        },
+        "datasource": {
+          "uid": "${origin_prometheus}"
+        },
+        "definition": "label_values(container_cpu_user_seconds_total{job=~\"$job\"},instance)",
         "hide": 0,
         "includeAll": false,
         "label": "Host:",
@@ -886,11 +941,11 @@
         "name": "node",
         "options": [],
         "query": {
-          "query": "label_values(container_cpu_user_seconds_total{job=~\"$job\"}, instance)",
-          "refId": "PrometheusVariableQueryEditor-Variable-Query"
+          "query": "label_values(container_cpu_user_seconds_total{job=~\"$job\"},instance)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "/([^:]+):.*/",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
@@ -899,38 +954,16 @@
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${origin_prometheus}",
-        "definition": "",
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": false,
-        "label": "Port",
-        "multi": false,
-        "name": "port",
-        "options": [],
-        "query": {
-          "query": "label_values(container_cpu_user_seconds_total{instance=~\"$node:(.*)\"}, instance)",
-          "refId": "PrometheusVariableQueryEditor-Variable-Query"
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
         },
-        "refresh": 1,
-        "regex": "/[^:]+:(.*)/",
-        "skipUrlSync": false,
-        "sort": 3,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {},
         "datasource": {
           "type": "prometheus",
           "uid": "${origin_prometheus}"
         },
-        "definition": "label_values(container_cpu_user_seconds_total,name)",
+        "definition": "label_values(container_cpu_user_seconds_total{instance=~\"$node\"},name)",
         "hide": 0,
         "includeAll": true,
         "label": "container",
@@ -938,7 +971,7 @@
         "name": "container",
         "options": [],
         "query": {
-          "query": "label_values(container_cpu_user_seconds_total,name)",
+          "query": "label_values(container_cpu_user_seconds_total{instance=~\"$node\"},name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -950,7 +983,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -981,5 +1014,6 @@
   "timezone": "browser",
   "title": "Docker monitoring with node selection",
   "uid": "u8FKAlyVz",
-  "version": 1
+  "version": 4,
+  "weekStart": ""
 }

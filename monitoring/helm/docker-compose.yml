@@ -8,7 +8,7 @@ services:
       target: node-exporter
     container_name: node-exporter
     image: seanly/kubeset:node-exporter-v1.7.0-1
-    restart: unless-stopped
+
   cadvisor:
     build:
       context: .
@@ -16,7 +16,7 @@ services:
       target: cadvisor
     container_name: cadvisor
     image: seanly/kubeset:cadvisor-v0.47.2-1
-    restart: unless-stopped
+
   k8s-sidecar:
     build:
       context: .
@@ -24,7 +24,7 @@ services:
       target: k8s-sidecar
     container_name: k8s-sidecar
     image: seanly/kubeset:k8s-sidecar-1.25.2-1
-    restart: unless-stopped
+
   alertmanager:
     build:
       context: .
@@ -32,7 +32,7 @@ services:
       target: alertmanager
     container_name: alertmanager
     image: seanly/kubeset:alertmanager-v0.26.0-1
-    restart: unless-stopped
+
   prometheus:
     build:
       context: .
@@ -40,7 +40,7 @@ services:
       target: prometheus
     container_name: prometheus
     image: seanly/kubeset:prometheus-v2.48.1-1
-    restart: unless-stopped
+
   prometheus-operator:
     build:
       context: .
@@ -48,7 +48,7 @@ services:
       target: prometheus-operator
     container_name: prometheus-operator
     image: seanly/kubeset:prometheus-operator-v0.70.0-1
-    restart: unless-stopped
+
   kube-webhook-certgen:
     build:
       context: .
@@ -56,7 +56,7 @@ services:
       target: kube-webhook-certgen
     container_name: kube-webhook-certgen
     image: seanly/kubeset:kube-webhook-certgen-v1.5.1-1
-    restart: unless-stopped
+
   kube-state-metrics:
     build:
       context: .
@@ -64,7 +64,7 @@ services:
       target: kube-state-metrics
     container_name: kube-state-metrics
     image: seanly/kubeset:kube-state-metrics-v2.10.1-1
-    restart: unless-stopped
+
   admission-webhook:
     build:
       context: .
@@ -72,7 +72,7 @@ services:
       target: admission-webhook
     container_name: admission-webhook
     image: seanly/kubeset:admission-webhook-v0.70.0-1
-    restart: unless-stopped
+
   prometheus-config-reloader:
     build:
       context: .
@@ -80,7 +80,6 @@ services:
       target: prometheus-config-reloader
     container_name: prometheus-config-reloader
     image: seanly/kubeset:prometheus-config-reloader-v0.50.0-1
-    restart: unless-stopped
 
 networks:
   default:
