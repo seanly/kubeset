@@ -1,2 +1,4 @@
-FROM grafana/loki:2.5.0 as loki
-FROM grafana/promtail:2.5.0 as promtail
+ARG VERSION=2.7.5
+FROM grafana/loki:${VERSION} as loki
+ARG VERSION=2.7.5
+FROM grafana/promtail:${VERSION} as promtail
